@@ -1,17 +1,15 @@
 import { Address } from "./Address";
-// import { DistanceBetween } from "./DistanceBetween";
+import { DistanceBetween } from "./DistanceBetween";
 
 export class AddressDistance {
-  // private _distance: DistanceBetween;
-  // private _duration: DistanceBetween;
-  private _distance: { text: string; value: number };
-  private _duration: { text: string; value: number };
+  private _distance: DistanceBetween;
+  private _duration: DistanceBetween;
   private _firstAddress: Address;
   private _secondAddress: Address;
 
   constructor(
-    distance: { text: string; value: number },
-    duration: { text: string; value: number },
+    distance: DistanceBetween,
+    duration: DistanceBetween,
     firstAddress: Address,
     secondAddress: Address
   ) {
@@ -52,7 +50,6 @@ export class AddressDistance {
     }
   }
 
-  // manipular value
   getDuration() {
     return this._duration.value;
   }
