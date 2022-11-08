@@ -1,6 +1,6 @@
-import { Distances } from "../domain/Distances";
-import { AddressDistance } from "../domain/valueObject/AddressDistance";
-import { GeolocationService } from "../shared/services/geolocation_service";
+import { Distances } from "../../domain/location/Distances";
+import { AddressDistance } from "../../domain/location/valueObject/AddressDistance";
+import { GeolocationService } from "../../shared/services/location/geolocation_service";
 
 export class GetClosestsAddresses {
   private _locationService: GeolocationService;

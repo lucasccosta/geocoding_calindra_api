@@ -1,7 +1,7 @@
-import { Address } from "../../domain/valueObject/Address";
-import { AddressDistance } from "../../domain/valueObject/AddressDistance";
-import { DistanceBetween } from "../../domain/valueObject/DistanceBetween";
-import { GeoLocationApi } from "../../integrations/geoLocationApi";
+import { Address } from "../../../domain/location/valueObject/Address";
+import { AddressDistance } from "../../../domain/location/valueObject/AddressDistance";
+import { DistanceBetween } from "../../../domain/location/valueObject/DistanceBetween";
+import { GeoLocationApi } from "../../../integrations/location/geoLocationApi";
 
 export class GeolocationService {
   private _api: GeoLocationApi;
@@ -53,8 +53,8 @@ export class GeolocationService {
     }
     return allDistances;
   }
-  private distanceFactory(distancia: DistanceBetween, distanceType: string) {
-    return new DistanceBetween(distancia.text, distancia.value, distanceType);
+  private distanceFactory(distance: DistanceBetween, distanceType: string) {
+    return new DistanceBetween(distance.text, distance.value, distanceType);
   }
 
   private addressFactory(

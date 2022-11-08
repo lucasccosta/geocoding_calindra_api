@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Address } from "../domain/valueObject/Address";
+import { Address } from "../../domain/location/valueObject/Address";
 
 const BASE_URL = "https://maps.googleapis.com/maps/api";
 const LAT_PARAMETER = "7C";
