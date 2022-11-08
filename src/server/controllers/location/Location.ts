@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { GetClosestsAddresses } from "../../useCases/getClosestsAddresses";
+import { GetClosestsAddresses } from "../../useCases/location/getClosestsAddresses";
 
 interface Query {
   address: Array<string>;
