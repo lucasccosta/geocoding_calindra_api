@@ -1,7 +1,7 @@
 export class DistanceBetween {
-  _text: string;
-  _value: number;
-  _type: string;
+  private _text: string;
+  private _value: number;
+  private _type: string;
 
   constructor(text: string, value: number, type: string) {
     this._text = text;
