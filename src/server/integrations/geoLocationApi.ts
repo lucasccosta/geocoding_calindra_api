@@ -10,7 +10,7 @@ export class GeoLocationApi {
     try {
       // const location = "1600+Amphitheatre+Parkway,+Mountain+View,+CA&";
       const response = await axios.get(
-        `${BASE_URL}/geocode/json?address=${address}&key=AIzaSyCsrPjQEjemeQAynjBRfgq1-OgKJChS_dA`
+        `${BASE_URL}/geocode/json?address=${address}&key=${process.env.API_KEY}`
       );
 
       const { location } = response.data.results[0].geometry;
