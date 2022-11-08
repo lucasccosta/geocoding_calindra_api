@@ -47,16 +47,6 @@ export class GeolocationService {
             allLocations[firstIndex],
             allLocations[secondIndex]
           );
-        // const distance = new DistanceBetween(
-        //   distanceBetweenAddresses.distance.text,
-        //   distanceBetweenAddresses.distance.value,
-        //   "distance"
-        // );
-        // const duration = new DistanceBetween(
-        //   distanceBetweenAddresses.duration.text,
-        //   distanceBetweenAddresses.duration.value,
-        //   "duration"
-        // );
         const distance = this.distanceFactory(
           distanceBetweenAddresses.distance,
           "distance"
