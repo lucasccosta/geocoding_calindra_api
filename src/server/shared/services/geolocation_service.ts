@@ -20,6 +20,19 @@ export class GeolocationService {
     return allLocations;
   }
 
+  private distanceFactory(distancia: DistanceBetween, distanceType: string) {
+    return new DistanceBetween(distancia.text, distancia.value, distanceType);
+  }
+
+  private addressFactory(
+    distance: DistanceBetween,
+    duration: DistanceBetween,
+    firstAddress: Address,
+    secondAddress: Address
+  ) {
+    return new AddressDistance(distance, duration, firstAddress, secondAddress);
+  }
+
   async getDitancesBetweenLocations(allLocations: Array<Address>) {
     const allDistances: Array<AddressDistance> = [];
     for (let firstIndex = 0; firstIndex < allLocations.length; firstIndex++) {
@@ -34,22 +47,36 @@ export class GeolocationService {
             allLocations[firstIndex],
             allLocations[secondIndex]
           );
-        const distance = new DistanceBetween(
-          distanceBetweenAddresses.distance.text,
-          distanceBetweenAddresses.distance.value,
+        // const distance = new DistanceBetween(
+        //   distanceBetweenAddresses.distance.text,
+        //   distanceBetweenAddresses.distance.value,
+        //   "distance"
+        // );
+        // const duration = new DistanceBetween(
+        //   distanceBetweenAddresses.duration.text,
+        //   distanceBetweenAddresses.duration.value,
+        //   "duration"
+        // );
+        const distance = this.distanceFactory(
+          distanceBetweenAddresses.distance,
           "distance"
         );
-        const duration = new DistanceBetween(
-          distanceBetweenAddresses.duration.text,
-          distanceBetweenAddresses.duration.value,
+        const duration = this.distanceFactory(
+          distanceBetweenAddresses.duration,
           "duration"
         );
-        const addressDistance = new AddressDistance(
+        const addressDistance = this.addressFactory(
           distance,
           duration,
           allLocations[firstIndex],
           allLocations[secondIndex]
         );
+        // const addressDistance = new AddressDistance(
+        //   distance,
+        //   duration,
+        //   allLocations[firstIndex],
+        //   allLocations[secondIndex]
+        // );
         allDistances.push(addressDistance);
       }
     }
