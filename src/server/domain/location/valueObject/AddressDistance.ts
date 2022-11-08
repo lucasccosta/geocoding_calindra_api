@@ -49,8 +49,4 @@ export class AddressDistance {
       return new Error("Second Address cannot be null or undefined");
     }
   }
-
-  getDuration() {
-    return this._duration.value;
-  }
 }
