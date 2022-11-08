@@ -20,19 +20,6 @@ export class GeolocationService {
     return allLocations;
   }
 
-  private distanceFactory(distancia: DistanceBetween, distanceType: string) {
-    return new DistanceBetween(distancia.text, distancia.value, distanceType);
-  }
-
-  private addressFactory(
-    distance: DistanceBetween,
-    duration: DistanceBetween,
-    firstAddress: Address,
-    secondAddress: Address
-  ) {
-    return new AddressDistance(distance, duration, firstAddress, secondAddress);
-  }
-
   async getDitancesBetweenLocations(allLocations: Array<Address>) {
     const allDistances: Array<AddressDistance> = [];
     for (let firstIndex = 0; firstIndex < allLocations.length; firstIndex++) {
@@ -61,15 +48,21 @@ export class GeolocationService {
           allLocations[firstIndex],
           allLocations[secondIndex]
         );
-        // const addressDistance = new AddressDistance(
-        //   distance,
-        //   duration,
-        //   allLocations[firstIndex],
-        //   allLocations[secondIndex]
-        // );
         allDistances.push(addressDistance);
       }
     }
     return allDistances;
+  }
+  private distanceFactory(distancia: DistanceBetween, distanceType: string) {
+    return new DistanceBetween(distancia.text, distancia.value, distanceType);
+  }
+
+  private addressFactory(
+    distance: DistanceBetween,
+    duration: DistanceBetween,
+    firstAddress: Address,
+    secondAddress: Address
+  ) {
+    return new AddressDistance(distance, duration, firstAddress, secondAddress);
   }
 }
