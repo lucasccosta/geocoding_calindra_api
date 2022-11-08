@@ -1,20 +1,26 @@
 import { Address } from "../../../domain/location/valueObject/Address";
 import { AddressDistance } from "../../../domain/location/valueObject/AddressDistance";
-import { DistanceBetween } from "../../../domain/location/valueObject/DistanceBetween";
+import { LocationFactories } from "../../../factories/location/LocationFactories";
 import { GeoLocationApi } from "../../../integrations/location/geoLocationApi";
 
 export class GeolocationService {
   private _api: GeoLocationApi;
+  private _LocationFactory: LocationFactories;
 
   constructor() {
     this._api = new GeoLocationApi();
+    this._LocationFactory = new LocationFactories();
   }
 
   async getAllLocations(locations: Array<string>) {
     const allLocations: Array<Address> = [];
     for (const location of locations) {
       const fullLocation = await this._api.getLatAndLonByLocation(location);
-      const address = new Address(location, fullLocation.lat, fullLocation.lng);
+      const address = this._LocationFactory.createAddress(
+        location,
+        fullLocation.lat,
+        fullLocation.lng
+      );
       allLocations.push(address);
     }
     return allLocations;
@@ -34,15 +40,17 @@ export class GeolocationService {
             allLocations[firstIndex],
             allLocations[secondIndex]
           );
-        const distance = this.distanceFactory(
-          distanceBetweenAddresses.distance,
+        const distance = this._LocationFactory.createDistanceBetween(
+          distanceBetweenAddresses.distance.text,
+          distanceBetweenAddresses.distance.value,
           "distance"
         );
-        const duration = this.distanceFactory(
-          distanceBetweenAddresses.duration,
+        const duration = this._LocationFactory.createDistanceBetween(
+          distanceBetweenAddresses.duration.text,
+          distanceBetweenAddresses.duration.value,
           "duration"
         );
-        const addressDistance = this.addressFactory(
+        const addressDistance = this._LocationFactory.createAddressDistance(
           distance,
           duration,
           allLocations[firstIndex],
@@ -52,17 +60,5 @@ export class GeolocationService {
       }
     }
     return allDistances;
-  }
-  private distanceFactory(distance: DistanceBetween, distanceType: string) {
-    return new DistanceBetween(distance.text, distance.value, distanceType);
-  }
-
-  private addressFactory(
-    distance: DistanceBetween,
-    duration: DistanceBetween,
-    firstAddress: Address,
-    secondAddress: Address
-  ) {
-    return new AddressDistance(distance, duration, firstAddress, secondAddress);
   }
 }
