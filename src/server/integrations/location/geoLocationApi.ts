@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Address } from "../../domain/location/valueObject/Address";
+import { ApiConnectionError } from "../../exceptions/ApiConnectionError";
 
 const BASE_URL = "https://maps.googleapis.com/maps/api";
 const LAT_PARAMETER = "7C";
@@ -14,8 +15,8 @@ export class GeoLocationApi {
 
       const { location } = response.data.results[0].geometry;
       return location;
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      throw new ApiConnectionError(error);
     }
   }
 
@@ -30,8 +31,8 @@ export class GeoLocationApi {
 
       const elements = response.data.rows[0].elements[0];
       return elements;
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      throw new ApiConnectionError(error);
     }
   }
 }
