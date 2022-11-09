@@ -10,22 +10,22 @@ export const getLocation = async (request: Request, response: Response) => {
   try {
     const { address } = request.query as unknown as Query;
     const useCase = new GetClosestsAddresses();
-    const addresses = await useCase.execute(address);
+    const addressesResponse = await useCase.execute(address);
     return response.status(StatusCodes.OK).json(
       `A distancia mais curta é entre os endereços: ${
-        addresses.shortestDistance?.firstAddress.address
+        addressesResponse.shortestDistance?.firstAddress.address
       } e ${
-        addresses.shortestDistance?.secondAddress.address
-      }, com duração de ${addresses.shortestDistance?.duration.text}
+        addressesResponse.shortestDistance?.secondAddress.address
+      }, com duração de ${addressesResponse.shortestDistance?.duration.text}
 
        A distancia mais longa é entre os endereços: ${
-         addresses.longestDistance?.firstAddress.address
+         addressesResponse.longestDistance?.firstAddress.address
        } e ${
-        addresses.longestDistance?.secondAddress.address
-      }, com duração de ${addresses.longestDistance?.duration.text}
+        addressesResponse.longestDistance?.secondAddress.address
+      }, com duração de ${addressesResponse.longestDistance?.duration.text}
       
       e a relação de endereços e suas distancias entre si: ${JSON.stringify(
-        addresses.allDistances.distances
+        addressesResponse.allDistances.distances
       )}`
     );
   } catch (error) {
