@@ -1,3 +1,5 @@
+import { ValidationError } from "../../../exceptions/ValidationError";
+
 export class Address {
   private _address: string;
   private _lat: number;
@@ -23,13 +25,13 @@ export class Address {
 
   validates() {
     if (this._address.length === 0) {
-      return new Error("Address cannot be empty");
+      throw new ValidationError("Address cannot be empty");
     }
     if (this._lat <= 90 && this._lat >= -90) {
-      return new Error("Latitude value variates between -90 to 90");
+      throw new ValidationError("Latitude value variates between -90 to 90");
     }
     if (this._lng <= 180 && this._lng >= -180) {
-      return new Error("Longitude value variates between -180 to 180");
+      throw new ValidationError("Longitude value variates between -180 to 180");
     }
   }
 }

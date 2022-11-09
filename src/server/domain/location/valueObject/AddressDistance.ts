@@ -1,3 +1,4 @@
+import { ValidationError } from "../../../exceptions/ValidationError";
 import { Address } from "./Address";
 import { DistanceBetween } from "./DistanceBetween";
 
@@ -37,16 +38,16 @@ export class AddressDistance {
 
   validates() {
     if (this._distance === null || this._distance == undefined) {
-      return new Error("Distance cannot be null or undefined");
+      throw new ValidationError("Distance cannot be null or undefined");
     }
     if (this._duration === null || this._duration == undefined) {
-      return new Error("Duration cannot be null or undefined");
+      throw new ValidationError("Duration cannot be null or undefined");
     }
     if (this._firstAddress === null || this._firstAddress == undefined) {
-      return new Error("First Address cannot be null or undefined");
+      throw new ValidationError("First Address cannot be null or undefined");
     }
     if (this._secondAddress === null || this._secondAddress == undefined) {
-      return new Error("Second Address cannot be null or undefined");
+      throw new ValidationError("Second Address cannot be null or undefined");
     }
   }
 }

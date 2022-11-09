@@ -1,3 +1,4 @@
+import { ValidationError } from "../../exceptions/ValidationError";
 import { AddressDistance } from "./valueObject/AddressDistance";
 
 export class Distances {
@@ -5,9 +6,16 @@ export class Distances {
 
   constructor(distances: Array<AddressDistance>) {
     this._distances = distances;
+    this.validates();
   }
   get distances() {
     return this._distances;
+  }
+
+  validates() {
+    if (this.distances.length < 3) {
+      throw new ValidationError("It must have at least three addresses");
+    }
   }
 
   selectShortestDistance() {
