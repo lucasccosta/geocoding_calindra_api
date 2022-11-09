@@ -1,5 +1,3 @@
-import { Distances } from "../../domain/location/Distances";
-import { AddressDistance } from "../../domain/location/valueObject/AddressDistance";
 import { LocationFactories } from "../../factories/location/LocationFactories";
 import { GeolocationService } from "../../shared/services/location/geolocation_service";
 
@@ -12,11 +10,7 @@ export class GetClosestsAddresses {
     this._locationFactory = new LocationFactories();
   }
 
-  async execute(addresses: Array<string>): Promise<{
-    allDistances: Distances;
-    shortestDistance: AddressDistance | undefined;
-    longestDistance: AddressDistance | undefined;
-  }> {
+  async execute(addresses: Array<string>) {
     const allLocations = await this._locationService.getAllLocations(addresses);
     const allDitancesBetweenLocations =
       await this._locationService.getDitancesBetweenLocations(allLocations);
