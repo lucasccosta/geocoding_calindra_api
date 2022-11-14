@@ -29,20 +29,26 @@ http://localhost:(porta)/geopoint?address=enderecos
 
 onde:
 
+```
 - porta = 3000
 - enderecos = Av. Rio Branco, 1, Centro, Rio de Janeiro, RJ, 20090003&address=Praça Mal. Âncora, 122,Centro, Rio de Janeiro, RJ, 20021200&address=Av. Pres. Castelo Branco 35 Maracanã, Rio de Janeiro RJ, 20271-130&address=Av. República do Paraguai 395 Centro, Rio de Janeiro RJ, 20031-180&address=Rua 19 de Fevereiro, 34 Botafogo, Rio de Janeiro RJ, 22280-030
+```
 
 ### Endereços sugeridos para teste
 
+```
 - Av. Rio Branco, 1, Centro, Rio de Janeiro, RJ, 20090003
 - Praça Mal. Âncora, 122,Centro, Rio de Janeiro, RJ, 20021200
 - Av. Pres. Castelo Branco 35 Maracanã, Rio de Janeiro RJ, 20271-130
 - Av. República do Paraguai 395 Centro, Rio de Janeiro RJ, 20031-180
 - Rua 19 de Fevereiro, 34 Botafogo, Rio de Janeiro RJ, 22280-030
+```
 
 ### Requisição com sucesso:
 
+```
 - localhost:3000/location?address=Av. Rio Branco, 1, Centro, Rio de Janeiro, RJ, 20090003&address=Praça Mal. Âncora, 122,Centro, Rio de Janeiro, RJ, 20021200&address=Av. Pres. Castelo Branco 35 Maracanã, Rio de Janeiro RJ, 20271-130&address=Av. República do Paraguai 395 Centro, Rio de Janeiro RJ, 20031-180&address=Rua 19 de Fevereiro, 34 Botafogo, Rio de Janeiro RJ, 22280-030
+```
 
 ### Requisição com falha (menos que 3 endereços):
 
