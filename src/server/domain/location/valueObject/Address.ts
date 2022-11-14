@@ -27,10 +27,10 @@ export class Address {
     if (this._address.length === 0) {
       throw new ValidationError("Address cannot be empty");
     }
-    if (this._lat <= 90 && this._lat >= -90) {
+    if (this._lat > 90 || this._lat < -90) {
       throw new ValidationError("Latitude value variates between -90 to 90");
     }
-    if (this._lng <= 180 && this._lng >= -180) {
+    if (this._lng > 180 || this._lng < -180) {
       throw new ValidationError("Longitude value variates between -180 to 180");
     }
   }
