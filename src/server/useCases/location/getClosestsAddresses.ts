@@ -1,3 +1,4 @@
+import { InvalidArgumentsError } from "../../exceptions/InvalidArgumentsError";
 import { LocationFactories } from "../../factories/location/LocationFactories";
 import { GeolocationService } from "../../shared/services/location/geolocation_service";
 
@@ -11,14 +12,20 @@ export class GetClosestsAddresses {
   }
 
   async execute(addresses: Array<string>) {
+    this.validates(addresses);
     const allLocations = await this._locationService.getAllLocations(addresses);
     const allDitancesBetweenLocations =
       await this._locationService.getDitancesBetweenLocations(allLocations);
     const allDistances = this._locationFactory.createDistances(
       allDitancesBetweenLocations
     );
-    const shortestDistance = allDistances.selectShortestDistance();
-    const longestDistance = allDistances.selectLongestDistance();
-    return { allDistances, shortestDistance, longestDistance };
+    return allDistances;
+  }
+
+  validates(addresses: Array<string>) {
+    if (addresses.length < 3 || addresses == undefined)
+      throw new InvalidArgumentsError(
+        "It must pass three or more address as argument"
+      );
   }
 }
