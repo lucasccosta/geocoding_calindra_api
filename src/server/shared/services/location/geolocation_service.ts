@@ -1,14 +1,14 @@
 import { Address } from "../../../domain/location/valueObject/Address";
 import { AddressDistance } from "../../../domain/location/valueObject/AddressDistance";
 import { LocationFactories } from "../../../factories/location/LocationFactories";
-import { GeoLocationApi } from "../../../integrations/location/geoLocationApi";
+import { GeolocationApi } from "../../../integrations/location/geolocationApi";
 
 export class GeolocationService {
-  private _api: GeoLocationApi;
+  private _api: GeolocationApi;
   private _LocationFactory: LocationFactories;
 
   constructor() {
-    this._api = new GeoLocationApi();
+    this._api = new GeolocationApi();
     this._LocationFactory = new LocationFactories();
   }
 
