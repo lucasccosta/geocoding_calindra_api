@@ -20,10 +20,10 @@ export class Distances {
 
   selectShortestDistance() {
     // Mapeia o array de distâncias, retornando o valor da duração da distância entre os endereços
-    const travelDurationCollection = this.getTravelDurationBetweenAddress();
+    const travelDistanceCollection = this.getTravelDistanceBetweenAddress();
 
     // Seleciona a distância mais curta
-    const shortestDistance = this.getShortestDistance(travelDurationCollection);
+    const shortestDistance = this.getShortestDistance(travelDistanceCollection);
 
     // Busca no array o endereço correspondente à distância mais curta
     return this.getAddressWithShortestDistance(shortestDistance);
@@ -31,40 +31,40 @@ export class Distances {
 
   selectLongestDistance() {
     // Mapeia o array de distâncias, retornando o valor da duração da distância entre os endereços
-    const travelDurationCollection = this.getTravelDurationBetweenAddress();
+    const travelDistanceCollection = this.getTravelDistanceBetweenAddress();
 
     // Seleciona a distância mais longa
-    const longestDistance = this.getLongestDistance(travelDurationCollection);
+    const longestDistance = this.getLongestDistance(travelDistanceCollection);
 
     // Busca no array o endereço correspondente à distância mais longa
     return this.getAddressWithLongestDistance(longestDistance);
   }
 
-  private getTravelDurationBetweenAddress() {
-    const travelDurationCollection: Array<number> = [];
+  private getTravelDistanceBetweenAddress() {
+    const travelDistanceCollection: Array<number> = [];
     this._distances.map((addresses) => {
-      travelDurationCollection.push(addresses.duration.value);
+      travelDistanceCollection.push(addresses.distance.value);
     });
-    return travelDurationCollection;
+    return travelDistanceCollection;
   }
 
-  private getShortestDistance(travelDurationCollection: Array<number>) {
-    return Math.min(...travelDurationCollection);
+  private getShortestDistance(travelDistanceCollection: Array<number>) {
+    return Math.min(...travelDistanceCollection);
   }
 
-  private getLongestDistance(travelDurationCollection: Array<number>) {
-    return Math.max(...travelDurationCollection);
+  private getLongestDistance(travelDistanceCollection: Array<number>) {
+    return Math.max(...travelDistanceCollection);
   }
 
   private getAddressWithShortestDistance(shortestDistance: number) {
     return this._distances.find(
-      (addressDistance) => addressDistance.duration.value === shortestDistance
+      (addressDistance) => addressDistance.distance.value === shortestDistance
     );
   }
 
-  private getAddressWithLongestDistance(shortestDistance: number) {
+  private getAddressWithLongestDistance(longestDistance: number) {
     return this._distances.find(
-      (addressDistance) => addressDistance.duration.value === shortestDistance
+      (addressDistance) => addressDistance.distance.value === longestDistance
     );
   }
 }
