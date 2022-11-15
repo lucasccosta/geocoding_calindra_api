@@ -18,7 +18,7 @@
 
 ## Como fazer uma requisição
 
-- Inicializar a API com o comando `yarn star:dev`
+- Inicializar a API com o comando `yarn start:dev`
 - Para fazer uma requisição, é necessário utilizar um aplicativo externo para fazer requisições como Postman ou Insomnia
 - Na aplicação, fazer uma chamada para a seguinte url:
 
