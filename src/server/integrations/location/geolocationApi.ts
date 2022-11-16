@@ -3,16 +3,11 @@ import { Address } from "../../domain/location/valueObject/Address";
 import { ApiConnectionError } from "../../exceptions/ApiConnectionError";
 import { InvalidArgumentsError } from "../../exceptions/InvalidArgumentsError";
 
-// pôr .env
-const BASE_URL = "https://maps.googleapis.com/maps/api";
-const LAT_PARAMETER = "7C";
-const LNG_PARAMETER = "2C";
-
 export class GeolocationApi {
   async getLatAndLonByLocation(address: string) {
     try {
       const response = await axios.get(
-        `${BASE_URL}/geocode/json?address=${address}&key=${process.env.API_KEY}`
+        `${process.env.BASE_URL}/geocode/json?address=${address}&key=${process.env.API_KEY}`
       );
 
       const { location } = response.data.results[0].geometry;
@@ -30,7 +25,7 @@ export class GeolocationApi {
   ) {
     try {
       const response = await axios.get(
-        `${BASE_URL}/distancematrix/json?origins=${firstAddress.lat}%${LNG_PARAMETER}${firstAddress.lng}&destinations=${secondAddress.lat}%${LNG_PARAMETER}${secondAddress.lng}&key=${process.env.API_KEY}`
+        `${process.env.BASE_URL}/distancematrix/json?origins=${firstAddress.lat}%${process.env.LNG_PARAMETER}${firstAddress.lng}&destinations=${secondAddress.lat}%${process.env.LNG_PARAMETER}${secondAddress.lng}&key=${process.env.API_KEY}`
       );
 
       const elements = response.data.rows[0].elements[0];
